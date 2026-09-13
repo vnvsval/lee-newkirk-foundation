@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "The story of Lee Anne Newkirk and why The Lee Newkirk Foundation exists.",
+  alternates: { canonical: "/about" },
 };
 
 const values = [

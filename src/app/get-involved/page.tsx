@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Get Involved",
   description:
     "Donate toys, give financially, volunteer, host a collection site, or partner with The Lee Newkirk Foundation's Fill the Rooms campaign.",
+  alternates: { canonical: "/get-involved" },
 };
 
 export default function GetInvolvedPage() {

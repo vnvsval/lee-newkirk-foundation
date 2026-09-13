@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Updates",
   description:
     "Campaign updates, announcements, and news from The Lee Newkirk Foundation.",
+  alternates: { canonical: "/updates" },
 };
 
 export default function UpdatesPage() {

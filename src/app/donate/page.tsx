@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Donate",
   description:
     "Support The Lee Newkirk Foundation and the Fill the Rooms Christmas toy drive.",
+  alternates: { canonical: "/donate" },
 };
 
 export default function DonatePage() {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { Section, Eyebrow } from "@/components/section";
 import { Button } from "@/components/button";
@@ -6,6 +7,14 @@ import { fillTheRooms } from "@/content/fill-the-rooms";
 import { involvementPaths } from "@/content/get-involved";
 import { getSortedUpdates } from "@/content/updates";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  // Always canonicalizes to the primary domain's homepage, even though
+  // filltherooms.org's "/" actually renders the Fill the Rooms page (see
+  // src/proxy.ts) — that page carries its own canonical pointing at
+  // /fill-the-rooms, so neither URL is ever left looking like a duplicate.
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   const steps = fillTheRooms.howItWorks;

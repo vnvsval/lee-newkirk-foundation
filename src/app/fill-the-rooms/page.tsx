@@ -12,6 +12,11 @@ import { getSortedUpdates } from "@/content/updates";
 export const metadata: Metadata = {
   title: "Fill the Rooms",
   description: fillTheRooms.intro,
+  // This page is also what filltherooms.org's homepage rewrites to (see
+  // src/proxy.ts). Pinning the canonical URL to the primary domain tells
+  // search engines there's one authoritative page, not duplicate content
+  // living at two URLs.
+  alternates: { canonical: "/fill-the-rooms" },
 };
 
 export default function FillTheRoomsPage() {
