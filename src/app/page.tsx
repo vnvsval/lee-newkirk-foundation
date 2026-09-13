@@ -4,8 +4,10 @@ import { Section, Eyebrow } from "@/components/section";
 import { Button } from "@/components/button";
 import { Reveal } from "@/components/reveal";
 import { fillTheRooms } from "@/content/fill-the-rooms";
+import { leeStory } from "@/content/lee-story";
 import { involvementPaths } from "@/content/get-involved";
 import { getSortedUpdates } from "@/content/updates";
+import { siteConfig } from "@/lib/site-config";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -37,54 +39,52 @@ export default function HomePage() {
         />
         <Container className="relative py-24 sm:py-32">
           <p className="text-sm font-semibold uppercase tracking-widest text-gold-bright">
-            The Lee Newkirk Foundation
+            {siteConfig.orgName}
           </p>
           <h1 className="mt-4 max-w-3xl text-5xl font-semibold leading-[1.05] sm:text-6xl">
-            One person&rsquo;s care for her community.
-            <br />A foundation to carry it forward.
+            Carrying forward a mother&rsquo;s generosity.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-paper/85">
-            The Lee Newkirk Foundation exists in memory of Lee Anne Newkirk.
-            Our first program, <strong className="text-paper">Fill the Rooms</strong>,
-            is a Christmas toy drive that fills rooms with gifts for local
-            children and families this holiday season.
+            {siteConfig.orgName} brings toys, joy, and hope to children and
+            families facing difficult circumstances. Our first program,{" "}
+            <strong className="text-paper">Fill the Rooms</strong>, is being
+            built for children spending Christmas in the hospital.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Button href="/fill-the-rooms#drop-off" variant="berry">
-              Donate Toys
+            <Button href="/fill-the-rooms" variant="berry">
+              See Fill the Rooms
             </Button>
             <Button href="/get-involved" variant="outline-light">
               Get Involved
             </Button>
-            <Button href="/fill-the-rooms" variant="gold">
-              Support Fill the Rooms
-            </Button>
           </div>
+          <Link
+            href="/about#lee-story"
+            className="mt-6 inline-block text-sm font-medium text-paper/75 hover:text-paper hover:underline"
+          >
+            Why we started this →
+          </Link>
         </Container>
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* Why we exist                                                     */}
+      {/* Who Lee was / why this exists                                    */}
       {/* ---------------------------------------------------------------- */}
       <Section tone="paper">
         <Reveal className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
             <Eyebrow>Why we exist</Eyebrow>
             <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-              This started because one person cared deeply.
+              This started with one family&rsquo;s hardest Christmas.
             </h2>
-            <p className="mt-5 text-lg text-ink-soft">
-              Lee Anne Newkirk spent her life showing up for the people
-              around her. The Lee Newkirk Foundation was created in her
-              memory to continue that spirit — starting with a Christmas
-              toy drive, and growing into whatever our community needs next.
-            </p>
+            <p className="mt-5 text-lg text-ink-soft">{leeStory.shortSummary}</p>
             <p className="mt-3 text-sm text-ink-soft/80">
-              Her full story is still being written into these pages. Visit
-              the About page for what we can share so far.
+              After Lee passed away, her family chose to continue that
+              generosity — and build something able to grow beyond what one
+              person could do alone.
             </p>
-            <Button href="/about" variant="outline" className="mt-6">
-              Read her story
+            <Button href="/about#lee-story" variant="outline" className="mt-6">
+              Read her full story
             </Button>
           </div>
           <div className="rounded-2xl border border-line bg-paper-dim p-8">
@@ -92,14 +92,14 @@ export default function HomePage() {
               &ldquo;{fillTheRooms.tagline}&rdquo;
             </p>
             <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-berry">
-              Fill the Rooms — our flagship program
+              Fill the Rooms — our first program
             </p>
           </div>
         </Reveal>
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* Fill the Rooms campaign intro                                    */}
+      {/* What Fill the Rooms is / who it helps                            */}
       {/* ---------------------------------------------------------------- */}
       <Section tone="holly">
         <Reveal>
@@ -107,6 +107,9 @@ export default function HomePage() {
           <h2 className="mt-3 max-w-2xl text-3xl font-semibold sm:text-4xl">
             {fillTheRooms.intro}
           </h2>
+          <p className="mt-4 max-w-2xl text-paper/80">
+            {fillTheRooms.hospitalNote}
+          </p>
         </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -222,16 +225,16 @@ export default function HomePage() {
         <Reveal className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-3xl font-semibold sm:text-4xl">
-              Fill a room this Christmas.
+              Help us build our first Christmas campaign.
             </h2>
             <p className="mt-3 max-w-lg text-paper/80">
-              Every toy, every hour, and every dollar helps this community
-              take care of its own.
+              We&rsquo;re new, and we&rsquo;re building this in the open —
+              toy by toy, hour by hour, dollar by dollar.
             </p>
           </div>
           <div className="flex flex-wrap gap-4">
             <Button href="/donate" variant="gold">
-              Donate now
+              Donate
             </Button>
             <Button href="/get-involved" variant="outline-light">
               Get involved

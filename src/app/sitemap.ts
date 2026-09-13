@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/donate`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteConfig.url}/contact`, changeFrequency: "yearly", priority: 0.5 },
     { url: `${siteConfig.url}/updates`, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${siteConfig.url}/legal`, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const updateRoutes: MetadataRoute.Sitemap = updates.map((update) => ({

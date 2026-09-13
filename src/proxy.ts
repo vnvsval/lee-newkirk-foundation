@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Lets filltherooms.org and theleenewkirkfoundation.com share one Next.js
+ * Lets filltherooms.org and theleeannenewkirkfoundation.com share one Next.js
  * app instead of running two separate sites.
  *
  * On the campaign domain, the homepage ("/") is rewritten to the Fill the

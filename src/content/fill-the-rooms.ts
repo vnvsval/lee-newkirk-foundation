@@ -11,6 +11,13 @@
  * Every list below (dates, locations, FAQs, partners, updates) can have
  * items added or removed by copying/deleting one whole { ... } block,
  * including its trailing comma.
+ *
+ * IMPORTANT — hospital language: `hospitalNote` and the FAQ answer about
+ * hospital coordination are written carefully on purpose. Do not change
+ * them to say "official partner of," "benefiting," or "in partnership
+ * with" any hospital until that relationship is explicitly confirmed in
+ * writing. Until then, "developing" / "intends to coordinate with" is the
+ * accurate, honest framing.
  */
 
 export type ImportantDate = {
@@ -37,55 +44,91 @@ export type Partner = {
   url?: string;
 };
 
-// PLACEHOLDER — real drop-off locations go here. Remove this placeholder
-// entry once at least one real location is confirmed.
+export type AgeGroup = {
+  label: string;
+  note: string;
+};
+
+// PLACEHOLDER — real collection locations go here once confirmed. Remove
+// this placeholder entry at that point.
 const dropOffLocations: DropOffLocation[] = [
   {
-    name: "Drop-off locations coming soon",
-    address: "We're finalizing this year's collection sites.",
+    name: "Collection locations coming soon",
+    address:
+      "We're building our first Christmas campaign, and collection locations will be posted here as they're confirmed.",
     notes:
-      "Want to host a box at your business or organization? Visit Get Involved to sign up.",
+      "Interested in hosting a collection location at your business or organization? Visit Get Involved.",
   },
 ];
 
 // PLACEHOLDER — real business/community partners go here once confirmed.
-// Never list a partner that hasn't agreed to be named publicly.
+// Never list a partner that hasn't agreed to be named publicly, and never
+// list a hospital here unless the relationship has been explicitly
+// confirmed in writing.
 const partners: Partner[] = [];
 
 export const fillTheRooms = {
   campaignName: "Fill the Rooms",
-  parentOrg: "The Lee Newkirk Foundation",
+  parentOrg: "The Lee Anne Newkirk Foundation",
 
-  tagline: "A Christmas toy drive that fills rooms with hope.",
+  tagline: "Fill the rooms with toys, joy and hope.",
+
+  ageRangeLabel: "Birth through age 18",
 
   intro:
-    "Fill the Rooms is The Lee Newkirk Foundation's flagship Christmas program: a community-powered toy drive that fills rooms with gifts for local children and families who need a brighter holiday.",
+    "Fill the Rooms is The Lee Anne Newkirk Foundation's first program: a Christmas toy drive for children and teens who have to spend the holiday in the hospital instead of at home.",
 
-  // PLACEHOLDER — a fuller paragraph describing the origin/purpose of the
-  // program can replace or extend this once provided.
+  // Why Christmas in a hospital is different, and what the program is
+  // trying to accomplish. Kept honest about being a first-year program.
   about:
-    "Every December, our community comes together to collect new, unwrapped toys and gifts so that no child in our area goes without something to open on Christmas morning. Fill the Rooms is organized in memory of Lee Anne Newkirk, whose care for this community inspired the foundation that bears her name.",
+    "A hospital room doesn't feel like Christmas on its own. Fill the Rooms exists to change that — collecting new, unused, unwrapped toys and gifts so hospitalized children, from infants through teenagers, still get something to unwrap that was chosen with them in mind. This is our inaugural campaign, focused on building it well in the Pensacola, Florida area before we think about growing further.",
+
+  // Careful, honest framing of where hospital coordination actually
+  // stands — see the file header comment before editing this.
+  hospitalNote:
+    "The Lee Anne Newkirk Foundation is developing its inaugural Pensacola-area campaign and intends to coordinate with local pediatric care professionals, including those at Studer Family Children's Hospital at Ascension Sacred Heart, as those conversations continue. Fill the Rooms is not yet affiliated with, or endorsed by, any hospital — we'll update this page the moment that changes.",
+
+  giftRequirements: ["New", "Unused", "Unwrapped"] as const,
+
+  ageGroups: [
+    {
+      label: "Infants & toddlers",
+      note: "Soft toys, board books, and sensory-friendly items.",
+    },
+    {
+      label: "Young children",
+      note: "Building sets, dolls, action figures, and creative play.",
+    },
+    {
+      label: "Preteens",
+      note: "Games, art supplies, and hobby kits.",
+    },
+    {
+      label: "Teenagers",
+      note: "Headphones, journals, gift cards, and things that don't feel babyish.",
+    },
+  ] satisfies AgeGroup[],
 
   howItWorks: [
     {
       title: "Toys are collected",
       description:
-        "Community members, businesses, and volunteers donate new, unwrapped toys at drop-off locations around town throughout the collection period.",
+        "Community members and local businesses donate new, unused, unwrapped toys at collection locations as they're announced.",
     },
     {
-      title: "Rooms are filled",
+      title: "Fill the Rooms sorts them",
       description:
-        "Volunteers sort and organize donations, filling designated rooms so families can select gifts that fit their children's ages and interests.",
+        "Volunteers sort and organize donations by age group, so every gift matches a real child's stage of life — not just a general pile of toys.",
     },
     {
-      title: "Families are matched",
+      title: "Gaps are filled",
       description:
-        "Local families in need are connected with the program ahead of the holidays. Details on how a family can request support are being finalized — see the FAQ below.",
+        "Where donations run short in a given age group — teenagers especially — the foundation works to fill in the gaps so every child gets more than one gift to open.",
     },
     {
-      title: "Gifts go home",
+      title: "Hospital-approved distribution",
       description:
-        "Families pick up or receive gifts in time for Christmas, made possible entirely by donors, volunteers, and community partners.",
+        "Gifts are delivered through a process coordinated with hospital staff, so they reach children safely and appropriately. We're building this process now, alongside our hospital conversations.",
     },
   ],
 
@@ -94,22 +137,22 @@ export const fillTheRooms = {
     {
       label: "Toy collection opens",
       date: "Date to be announced",
-      detail: "Drop-off locations open for donations.",
+      detail: "Collection locations open for donations.",
     },
     {
       label: "Toy collection closes",
       date: "Date to be announced",
-      detail: "Final day to donate toys for this year's drive.",
+      detail: "Final day to donate toys for this year's campaign.",
     },
     {
-      label: "Room-filling & sorting",
+      label: "Sorting & inventory",
       date: "Date to be announced",
-      detail: "Volunteers sort and organize donated toys.",
+      detail: "Volunteers sort donated toys by age group.",
     },
     {
-      label: "Distribution to families",
+      label: "Distribution",
       date: "Date to be announced",
-      detail: "Gifts are delivered or picked up before Christmas.",
+      detail: "Gifts reach children through a hospital-coordinated process.",
     },
   ] satisfies ImportantDate[],
 
@@ -118,37 +161,47 @@ export const fillTheRooms = {
 
   faqs: [
     {
+      question: "Who does Fill the Rooms help?",
+      answer:
+        "Children and teens, birth through age 18, who are spending Christmas in the hospital. Our inaugural campaign is focused on the Pensacola, Florida area.",
+    },
+    {
+      question: "Is Fill the Rooms officially connected with a hospital?",
+      answer:
+        "Not yet. We're developing our inaugural Pensacola-area campaign and intend to coordinate with local pediatric care professionals, including those at Studer Family Children's Hospital at Ascension Sacred Heart, as those conversations continue. We'll share confirmed details here as soon as they're final.",
+    },
+    {
       question: "What kind of toys are needed?",
       answer:
-        "New, unwrapped toys and gifts for children and teens of all ages. We'll post specific age-range and item needs here as this year's drive is finalized.",
+        "New, unused, unwrapped toys and gifts for children and teens, birth through 18 — including things teenagers would actually want, not just toys for younger kids. We'll share more specific guidance as our first campaign takes shape.",
     },
     {
       question: "Can I drop off used toys?",
       answer:
-        "We ask for new, unwrapped items only, so every child receives a gift that's just for them.",
+        "No — we ask for new, unused, unwrapped items only, so every child receives something that feels like it was chosen just for them.",
     },
     {
-      question: "How can my family get help through Fill the Rooms?",
+      question: "How are children chosen to receive gifts?",
       answer:
-        "We're finalizing the request process for this year. Please check back or contact us and we'll follow up as soon as it's ready.",
+        "Distribution will be coordinated with hospital staff, so gifts reach the children who need them. We're finalizing this process alongside our hospital conversations.",
     },
     {
       question: "Can I donate money instead of toys?",
       answer:
-        "Yes — monetary support helps cover gaps in specific age groups and program costs. See the Donate page for details on how giving will work this year.",
+        "Financial gifts will help fill gaps in toy donations and cover program costs. Visit the Donate page for exactly where things stand — online giving isn't active yet.",
     },
     {
       question: "Is my donation tax-deductible?",
       answer:
-        "The Lee Newkirk Foundation's nonprofit status is in progress. We'll update this answer with specifics as soon as it's confirmed.",
+        "Not yet. The Lee Anne Newkirk Foundation's nonprofit status has not been established, so we can't say donations are tax-deductible. We will not claim that until it's confirmed, and we'll update this page the moment it is.",
     },
     {
       question: "How can my business get involved?",
       answer:
-        "Businesses can host a collection box, sponsor the campaign, or promote the drive to customers. Visit Get Involved for details.",
+        "Businesses can host a collection location or become a community partner. Visit Get Involved — we're building these relationships now, as our first campaign comes together.",
     },
   ] satisfies FaqItem[],
 
   monetaryUse:
-    "Monetary donations to Fill the Rooms go directly toward filling gaps in toy inventory (especially for older kids and teens), wrapping supplies, and the logistics of getting gifts to families. A detailed breakdown will be shared as the program grows.",
+    "Financial gifts to Fill the Rooms are intended to fill gaps in toy donations — especially for teenagers — and to help cover the costs of running the program well, so every child receives more than a single gift. Donation infrastructure isn't finalized yet; see the Donate page for where things currently stand.",
 };

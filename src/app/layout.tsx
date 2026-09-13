@@ -66,6 +66,7 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "NGO",
             name: siteConfig.orgName,
+            legalName: siteConfig.legalName,
             url: siteConfig.url,
             description: siteConfig.description,
             email: siteConfig.contactEmail,

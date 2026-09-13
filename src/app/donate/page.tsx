@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Donate",
   description:
-    "Support The Lee Newkirk Foundation and the Fill the Rooms Christmas toy drive.",
+    "Support The Lee Anne Newkirk Foundation and the Fill the Rooms Christmas toy drive.",
   alternates: { canonical: "/donate" },
 };
 
@@ -45,20 +45,22 @@ export default function DonatePage() {
               <Eyebrow>Nonprofit status</Eyebrow>
               <p className="mt-2 text-sm text-ink-soft">
                 {siteConfig.nonprofitStatus === "501c3"
-                  ? "The Lee Newkirk Foundation is a registered 501(c)(3) nonprofit organization."
-                  : "The Lee Newkirk Foundation's formal nonprofit status is currently in progress. We'll update this page — including any tax-deductibility details — the moment it's confirmed."}
+                  ? "The Lee Anne Newkirk Foundation is a registered 501(c)(3) nonprofit organization."
+                  : "The Lee Anne Newkirk Foundation's formal nonprofit status is currently in progress. We'll update this page — including any tax-deductibility details — the moment it's confirmed."}
               </p>
             </div>
 
             <div>
               <Eyebrow>Want to give right now?</Eyebrow>
               <p className="mt-2 text-sm text-ink-soft">
-                Online giving isn&rsquo;t connected yet, but we don&rsquo;t
-                want that to stop a gift you&rsquo;re ready to make today.
-                Contact us and we&rsquo;ll arrange it directly.
+                We&rsquo;re a brand-new organization and are still setting
+                up our donation infrastructure and banking, so we&rsquo;re
+                not able to accept financial gifts directly yet. Let us
+                know you&rsquo;re interested, and we&rsquo;ll follow up the
+                moment giving is ready.
               </p>
               <Button href="/contact?topic=donate" variant="outline" className="mt-4">
-                Contact us about giving now
+                Let us know you&rsquo;re interested
               </Button>
             </div>
           </Reveal>

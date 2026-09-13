@@ -7,7 +7,7 @@ import { ContactForm } from "./contact-form";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with The Lee Newkirk Foundation about volunteering, partnerships, donations, or Fill the Rooms.",
+    "Get in touch with The Lee Anne Newkirk Foundation about volunteering, partnerships, donations, or Fill the Rooms.",
   // Canonical stays query-string-free even though ?topic= pre-fills the
   // form — those variants shouldn't be indexed as separate pages.
   alternates: { canonical: "/contact" },

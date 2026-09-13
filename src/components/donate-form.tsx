@@ -156,11 +156,13 @@ export function DonateForm() {
         <p role="status" className="mt-4 text-sm font-medium text-success">
           This is a preview of the giving experience — online payments
           aren&rsquo;t connected yet, so nothing was submitted or charged.
-          If you&rsquo;d like to give right now,{" "}
-          <a href="/contact" className="underline">
-            contact us
-          </a>{" "}
-          and we&rsquo;ll arrange it directly.
+          We&rsquo;re still setting up donation infrastructure and
+          banking; if you&rsquo;d like to be notified the moment giving is
+          ready,{" "}
+          <a href="/contact?topic=donate" className="underline">
+            let us know
+          </a>
+          .
         </p>
       )}
     </form>

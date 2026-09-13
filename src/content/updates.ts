@@ -25,14 +25,14 @@ export type Update = {
 export const updates: Update[] = [
   {
     slug: "welcome-to-the-foundation",
-    title: "The Lee Newkirk Foundation is online",
+    title: "The Lee Anne Newkirk Foundation is online",
     date: "2026-09-13",
     summary:
-      "Our website is live and Fill the Rooms planning for this year's toy drive is underway.",
+      "Our website is live, and we're building our inaugural Fill the Rooms campaign for hospitalized kids in the Pensacola area this Christmas.",
     body: [
-      "Welcome to the new home for The Lee Newkirk Foundation. This site will be the place to find out how Fill the Rooms works, where to drop off toys, how to volunteer, and how to support the foundation's growing work in our community.",
-      "We're a brand-new foundation, so you'll see a few 'details coming soon' notes scattered through the site as dates, locations, and partners are confirmed. We'd rather tell you the truth about what's still in progress than make up information to fill space.",
-      "Check back here for updates as the Fill the Rooms collection period approaches, or follow along on our social channels once they're announced.",
+      "Welcome to the new home for The Lee Anne Newkirk Foundation. This site is where you'll find out how Fill the Rooms works, who it serves, how to donate toys, how to volunteer, and how to support the foundation as it grows.",
+      "We're a brand-new foundation building our very first Christmas campaign, so you'll see a few 'coming soon' notes scattered through the site as collection locations, dates, and hospital coordination are confirmed. We'd rather tell you the truth about what's still in progress than make up information to fill space.",
+      "Check back here for updates as our first campaign takes shape, or follow along on our social channels once they're announced.",
     ],
   },
 ];

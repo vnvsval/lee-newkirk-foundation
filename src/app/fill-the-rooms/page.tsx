@@ -7,6 +7,7 @@ import { Button } from "@/components/button";
 import { PlaceholderNotice } from "@/components/placeholder-notice";
 import { JsonLd } from "@/components/json-ld";
 import { fillTheRooms } from "@/content/fill-the-rooms";
+import { leeStory } from "@/content/lee-story";
 import { getSortedUpdates } from "@/content/updates";
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 export default function FillTheRoomsPage() {
   const updates = getSortedUpdates().slice(0, 3);
   const hasRealLocations = fillTheRooms.dropOffLocations.some(
-    (loc) => loc.name !== "Drop-off locations coming soon"
+    (loc) => loc.name !== "Collection locations coming soon"
   );
   const hasPartners = fillTheRooms.partners.length > 0;
 
@@ -59,14 +60,52 @@ export default function FillTheRoomsPage() {
         </div>
       </PageHero>
 
-      {/* What it is */}
+      {/* Why Christmas in a hospital is different */}
       <Section tone="paper">
         <Reveal className="max-w-3xl">
-          <Eyebrow>What it is</Eyebrow>
+          <Eyebrow>Why this matters</Eyebrow>
           <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-            A community-powered Christmas toy drive
+            A hospital room doesn&rsquo;t feel like Christmas on its own
           </h2>
           <p className="mt-4 text-lg text-ink-soft">{fillTheRooms.about}</p>
+        </Reveal>
+      </Section>
+
+      {/* How Fill the Rooms began */}
+      <Section id="origin" tone="dim">
+        <Reveal className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div>
+            <Eyebrow>How it began</Eyebrow>
+            <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
+              This started with one family&rsquo;s Christmas
+            </h2>
+            <p className="mt-4 text-ink-soft">{leeStory.shortSummary}</p>
+            <Link
+              href="/about#lee-story"
+              className="mt-4 inline-block text-sm font-semibold text-navy hover:underline"
+            >
+              Read Lee&rsquo;s full story →
+            </Link>
+          </div>
+          <div className="rounded-2xl border border-line bg-paper p-8">
+            <p className="font-serif text-2xl leading-snug text-navy">
+              &ldquo;{fillTheRooms.tagline}&rdquo;
+            </p>
+            <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-berry">
+              {fillTheRooms.parentOrg}
+            </p>
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* Who it serves / hospital coordination status */}
+      <Section tone="paper">
+        <Reveal className="max-w-3xl">
+          <Eyebrow>Who it serves</Eyebrow>
+          <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
+            {fillTheRooms.ageRangeLabel}, spending Christmas in the hospital
+          </h2>
+          <p className="mt-4 text-ink-soft">{fillTheRooms.hospitalNote}</p>
         </Reveal>
       </Section>
 
@@ -75,7 +114,7 @@ export default function FillTheRoomsPage() {
         <Reveal>
           <Eyebrow>How it works</Eyebrow>
           <h2 className="mt-3 max-w-xl text-3xl font-semibold sm:text-4xl">
-            From donation to delivered gift
+            From donation to a child&rsquo;s bedside
           </h2>
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -95,22 +134,33 @@ export default function FillTheRoomsPage() {
         </div>
       </Section>
 
-      {/* Donate toys / drop-off locations */}
+      {/* Donate toys / gift requirements / collection locations */}
       <Section id="drop-off" tone="paper">
         <Reveal className="max-w-2xl">
           <Eyebrow>Donate toys</Eyebrow>
           <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-            Drop off a new, unwrapped toy
+            Every gift must be new, unused, and unwrapped
           </h2>
           <p className="mt-4 text-ink-soft">
-            Bring new, unwrapped toys and gifts to any of the locations
-            below during the collection period. Can&rsquo;t make it to a
-            drop-off site?{" "}
+            That way every child gets to unwrap something that was chosen
+            for them.{" "}
             <Link href="/contact" className="font-semibold text-navy hover:underline">
               Contact us
             </Link>{" "}
-            to arrange a pickup.
+            if you&rsquo;d like to donate before collection locations are
+            announced.
           </p>
+        </Reveal>
+
+        <Reveal className="mt-6 flex flex-wrap gap-3" delay={80}>
+          {fillTheRooms.giftRequirements.map((req) => (
+            <span
+              key={req}
+              className="rounded-full border border-berry/30 bg-berry/5 px-4 py-2 text-sm font-semibold text-berry"
+            >
+              {req}
+            </span>
+          ))}
         </Reveal>
 
         <div className="mt-10">
@@ -133,14 +183,14 @@ export default function FillTheRoomsPage() {
               ))}
             </div>
           ) : (
-            <PlaceholderNotice label="Locations coming soon">
+            <PlaceholderNotice label="Collection locations coming soon">
               <p>
-                This year&rsquo;s drop-off locations are still being
-                confirmed. Once businesses and organizations sign on as
-                hosts, their addresses and hours will appear here.
+                We&rsquo;re building our first Christmas campaign, and
+                collection locations will be posted here as they&rsquo;re
+                confirmed.
               </p>
               <p className="mt-2">
-                Want to host a collection box?{" "}
+                Interested in hosting a collection location?{" "}
                 <Link
                   href="/contact?topic=host-location"
                   className="font-semibold text-berry hover:underline"
@@ -154,32 +204,59 @@ export default function FillTheRoomsPage() {
         </div>
       </Section>
 
+      {/* Age inclusivity */}
+      <Section id="ages" tone="holly">
+        <Reveal>
+          <Eyebrow className="text-gold-bright">Every age counts</Eyebrow>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold sm:text-4xl">
+            {fillTheRooms.ageRangeLabel} — teenagers included
+          </h2>
+          <p className="mt-4 max-w-2xl text-paper/85">
+            It&rsquo;s easy for toy drives to default to gifts for young
+            kids. Fill the Rooms is built for every age in the hospital,
+            teenagers included — these are general ideas to help you shop,
+            not an official hospital wish list.
+          </p>
+        </Reveal>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {fillTheRooms.ageGroups.map((group, index) => (
+            <Reveal key={group.label} delay={index * 80}>
+              <div className="h-full rounded-2xl border border-paper/15 bg-paper/5 p-6">
+                <h3 className="text-lg font-semibold">{group.label}</h3>
+                <p className="mt-2 text-sm text-paper/80">{group.note}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
       {/* Volunteering */}
-      <Section id="volunteer" tone="holly">
+      <Section id="volunteer" tone="paper">
         <Reveal className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
-            <Eyebrow className="text-gold-bright">Volunteer</Eyebrow>
+            <Eyebrow>Volunteer</Eyebrow>
             <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
               Give a few hours, change a Christmas morning
             </h2>
-            <p className="mt-4 text-paper/85">
-              Volunteers sort toys, staff drop-off locations, and help pack
-              and distribute gifts to families. No experience is
-              necessary — just a few hours and a willingness to help.
+            <p className="mt-4 text-ink-soft">
+              Volunteers will sort toys, staff collection locations, and
+              help with distribution day. No experience is necessary — just
+              a few hours and a willingness to help.
             </p>
           </div>
-          <Button href="/contact?topic=volunteer" variant="gold" className="w-fit">
+          <Button href="/contact?topic=volunteer" variant="berry" className="w-fit">
             Sign up to volunteer
           </Button>
         </Reveal>
       </Section>
 
       {/* Business & community partners */}
-      <Section id="partners" tone="paper">
+      <Section id="partners" tone="dim">
         <Reveal className="max-w-2xl">
-          <Eyebrow>Community partners</Eyebrow>
+          <Eyebrow>Businesses & community partners</Eyebrow>
           <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-            Businesses and organizations behind the drive
+            Help us build our first Christmas campaign
           </h2>
         </Reveal>
 
@@ -189,7 +266,7 @@ export default function FillTheRoomsPage() {
               {fillTheRooms.partners.map((partner) => (
                 <li
                   key={partner.name}
-                  className="rounded-2xl border border-line bg-paper-dim p-6"
+                  className="rounded-2xl border border-line bg-paper p-6"
                 >
                   <p className="font-semibold text-ink">{partner.name}</p>
                   {partner.description && (
@@ -223,7 +300,7 @@ export default function FillTheRoomsPage() {
       </Section>
 
       {/* Monetary support */}
-      <Section id="give" tone="dim">
+      <Section id="give" tone="paper">
         <Reveal className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
             <Eyebrow>Give financially</Eyebrow>
@@ -238,19 +315,19 @@ export default function FillTheRoomsPage() {
         </Reveal>
       </Section>
 
-      {/* Important dates */}
-      <Section id="dates" tone="paper">
+      {/* Campaign status */}
+      <Section id="dates" tone="dim">
         <Reveal>
-          <Eyebrow>Important dates</Eyebrow>
+          <Eyebrow>Campaign status</Eyebrow>
           <h2 className="mt-3 max-w-xl text-3xl font-semibold sm:text-4xl">
-            This year&rsquo;s timeline
+            Where this year&rsquo;s campaign stands
           </h2>
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {fillTheRooms.importantDates.map((item) => (
             <div
               key={item.label}
-              className="flex items-start gap-4 rounded-2xl border border-line bg-paper-dim p-5"
+              className="flex items-start gap-4 rounded-2xl border border-line bg-paper p-5"
             >
               <div className="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-berry" />
               <div>
@@ -266,14 +343,14 @@ export default function FillTheRoomsPage() {
       </Section>
 
       {/* FAQ */}
-      <Section id="faq" tone="dim">
+      <Section id="faq" tone="paper">
         <Reveal>
           <Eyebrow>FAQ</Eyebrow>
           <h2 className="mt-3 max-w-xl text-3xl font-semibold sm:text-4xl">
             Common questions
           </h2>
         </Reveal>
-        <div className="mt-10 divide-y divide-line rounded-2xl border border-line bg-paper">
+        <div className="mt-10 divide-y divide-line rounded-2xl border border-line bg-paper-dim">
           {fillTheRooms.faqs.map((faq) => (
             <details key={faq.question} className="group p-6">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink">
@@ -292,7 +369,7 @@ export default function FillTheRoomsPage() {
       </Section>
 
       {/* Campaign updates */}
-      <Section id="updates" tone="paper">
+      <Section id="updates" tone="dim">
         <Reveal className="flex flex-wrap items-baseline justify-between gap-4">
           <div>
             <Eyebrow>Campaign updates</Eyebrow>
@@ -309,7 +386,7 @@ export default function FillTheRoomsPage() {
             <Link
               key={update.slug}
               href={`/updates/${update.slug}`}
-              className="block rounded-2xl border border-line p-6 hover:border-navy"
+              className="block rounded-2xl border border-line bg-paper p-6 hover:border-navy"
             >
               <time
                 dateTime={update.date}
@@ -331,7 +408,7 @@ export default function FillTheRoomsPage() {
       <Section tone="navy">
         <Reveal className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="max-w-lg text-3xl font-semibold sm:text-4xl">
-            Ready to help fill a room this Christmas?
+            Help us build our first Christmas campaign
           </h2>
           <div className="flex flex-wrap gap-4">
             <Button href="/get-involved" variant="gold">

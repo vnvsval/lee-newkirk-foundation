@@ -3,12 +3,15 @@ import { PageHero } from "@/components/page-hero";
 import { Section, Eyebrow } from "@/components/section";
 import { Reveal } from "@/components/reveal";
 import { PlaceholderNotice } from "@/components/placeholder-notice";
+import { PortraitPlaceholder } from "@/components/portrait-placeholder";
 import { Button } from "@/components/button";
+import { leeStory } from "@/content/lee-story";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The story of Lee Anne Newkirk and why The Lee Newkirk Foundation exists.",
+    "The story of Lee Anne Newkirk and why The Lee Anne Newkirk Foundation exists.",
   alternates: { canonical: "/about" },
 };
 
@@ -16,12 +19,12 @@ const values = [
   {
     title: "Community-led",
     description:
-      "Every program starts with a real need we see in our own community, not a template borrowed from somewhere else.",
+      "Every program starts with a real need we can see, not a template borrowed from somewhere else.",
   },
   {
-    title: "Direct impact",
+    title: "Direct",
     description:
-      "We aim to put donations — toys, time, and money — as directly as possible into the hands of families who need them.",
+      "We aim to put donations — toys, time, and money — as directly as possible into the hands of the children and families they're meant for.",
   },
   {
     title: "Honest, always",
@@ -36,46 +39,48 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About the foundation"
         title="In memory of Lee Anne Newkirk"
-        description="The Lee Newkirk Foundation exists to continue what one person started: showing up for this community."
+        description={`${siteConfig.orgName} exists to continue something she started — not to mark that she's gone.`}
       />
 
-      <Section tone="paper">
-        <Reveal className="grid gap-10 lg:grid-cols-[1fr_1fr]">
+      {/* Lee's story — kept separate from the foundation's mission below. */}
+      <Section id="lee-story" tone="paper">
+        <Reveal className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
           <div>
-            <Eyebrow>Her story</Eyebrow>
+            <Eyebrow>Lee&rsquo;s story</Eyebrow>
             <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-              Who Lee Anne Newkirk was
+              Why this foundation carries her name
             </h2>
-            <p className="mt-4 text-ink-soft">
-              This page is reserved for Lee Anne Newkirk&rsquo;s story — who
-              she was, what she cared about, and why her family and
-              community chose to build a foundation in her name. We want
-              this told right, in her family&rsquo;s words, rather than
-              guessed at.
-            </p>
+            <div className="mt-5 space-y-4 text-lg text-ink-soft">
+              {leeStory.paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+            <PlaceholderNotice label="More to come" className="mt-6">
+              <p>
+                This is the story as it&rsquo;s been shared with us so far.
+                If Lee&rsquo;s family wants to add more — in their own
+                words — this section will grow to hold it.
+              </p>
+            </PlaceholderNotice>
           </div>
-          <PlaceholderNotice>
-            <p>
-              Biography, photos, and any details the family would like
-              shared publicly go here. Until then, this section stays
-              clearly marked rather than filled with invented details.
-            </p>
-          </PlaceholderNotice>
+          <PortraitPlaceholder />
         </Reveal>
       </Section>
 
+      {/* The foundation's organizational mission — distinct from Lee's story. */}
       <Section tone="dim">
         <Reveal>
           <Eyebrow>Our mission</Eyebrow>
           <h2 className="mt-3 max-w-2xl text-3xl font-semibold sm:text-4xl">
-            Continuing Lee Anne&rsquo;s spirit of caring for our community.
+            Carrying forward Lee&rsquo;s legacy of generosity
           </h2>
           <p className="mt-4 max-w-2xl text-ink-soft">
-            The Lee Newkirk Foundation was created to carry that spirit
-            forward through direct, community-focused programs. Our first is{" "}
-            <strong>Fill the Rooms</strong>, an annual Christmas toy drive.
-            As the foundation grows, we intend to take on new programs that
-            answer real needs in our community throughout the year.
+            {siteConfig.orgName} brings toys, joy, and hope to children and
+            families facing difficult circumstances. Our first program,{" "}
+            <strong>Fill the Rooms</strong>, serves children spending
+            Christmas in the hospital. As the foundation grows, we intend to
+            take on new programs — but we&rsquo;re focused on building this
+            first one well before we talk about what comes next.
           </p>
         </Reveal>
 
@@ -102,8 +107,8 @@ export default function AboutPage() {
               Meet the first program: Fill the Rooms
             </h2>
             <p className="mt-3 max-w-lg text-paper/80">
-              See how this year&rsquo;s Christmas toy drive works, and how
-              to take part.
+              See who it serves, how toy donations will work, and how to
+              take part in our inaugural campaign.
             </p>
           </div>
           <Button href="/fill-the-rooms" variant="gold">

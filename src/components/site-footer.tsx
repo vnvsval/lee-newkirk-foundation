@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
-import { footerNav, siteConfig } from "@/lib/site-config";
+import { footerNav, legalNav, siteConfig } from "@/lib/site-config";
 
 export function SiteFooter() {
   return (
@@ -75,16 +75,36 @@ export function SiteFooter() {
         </div>
       </Container>
 
-      <Container className="flex flex-col gap-2 border-t border-paper/15 py-6 text-xs text-paper/60 sm:flex-row sm:items-center sm:justify-between">
-        <p>
-          © {new Date().getFullYear()} {siteConfig.orgName}. All rights
-          reserved.
-        </p>
-        <p>
-          {siteConfig.nonprofitStatus === "501c3" && siteConfig.ein
-            ? `A 501(c)(3) nonprofit organization. EIN ${siteConfig.ein}.`
-            : "Nonprofit status is currently in progress."}
-        </p>
+      <Container className="border-t border-paper/15 py-6">
+        <nav
+          aria-label="Legal"
+          className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-paper/60"
+        >
+          {legalNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="hover:text-paper hover:underline"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="mt-4 flex flex-col gap-1 text-xs text-paper/60 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.orgName}. All rights
+            reserved.
+            {" "}
+            <span className="text-paper/50">
+              ({siteConfig.legalName})
+            </span>
+          </p>
+          <p>
+            {siteConfig.nonprofitStatus === "501c3" && siteConfig.ein
+              ? `A 501(c)(3) nonprofit organization. EIN ${siteConfig.ein}.`
+              : "Nonprofit status is currently in progress — donations are not yet tax-deductible."}
+          </p>
+        </div>
       </Container>
     </footer>
   );

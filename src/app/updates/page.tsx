@@ -8,7 +8,7 @@ import { getSortedUpdates } from "@/content/updates";
 export const metadata: Metadata = {
   title: "Updates",
   description:
-    "Campaign updates, announcements, and news from The Lee Newkirk Foundation.",
+    "Campaign updates, announcements, and news from The Lee Anne Newkirk Foundation.",
   alternates: { canonical: "/updates" },
 };
 

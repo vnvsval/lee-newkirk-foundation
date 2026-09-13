@@ -8,7 +8,7 @@ import { involvementPaths } from "@/content/get-involved";
 export const metadata: Metadata = {
   title: "Get Involved",
   description:
-    "Donate toys, give financially, volunteer, host a collection site, or partner with The Lee Newkirk Foundation's Fill the Rooms campaign.",
+    "Donate toys, give financially, volunteer, host a collection site, or partner with The Lee Anne Newkirk Foundation's Fill the Rooms campaign.",
   alternates: { canonical: "/get-involved" },
 };
 
@@ -18,7 +18,7 @@ export default function GetInvolvedPage() {
       <PageHero
         eyebrow="Get involved"
         title="There's a place for you in this."
-        description="Whatever you have to give — time, toys, a storefront, or a few dollars — there's a way to put it to use."
+        description="We're building our first Christmas campaign. Whatever you have to give — time, toys, a storefront, or a few dollars — there's a way to put it to use."
       />
 
       <Section tone="paper">

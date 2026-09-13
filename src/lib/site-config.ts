@@ -4,36 +4,47 @@
  * This is the one file to edit for organization-level facts that show up in
  * multiple places (navigation, footer, metadata, structured data). Program
  * or campaign-specific content (like Fill the Rooms) lives in
- * `src/content/fill-the-rooms.ts` instead.
+ * `src/content/fill-the-rooms.ts` instead, and Lee's story lives in
+ * `src/content/lee-story.ts`.
  *
  * Anything marked "PLACEHOLDER" is a stand-in that must be replaced with
  * real information before launch. See CONTENT_NEEDED.md for the full list.
  */
 
 export const siteConfig = {
-  orgName: "The Lee Newkirk Foundation",
-  orgShortName: "Lee Newkirk Foundation",
+  /** Public-facing name, used everywhere a visitor sees the org's name. */
+  orgName: "The Lee Anne Newkirk Foundation",
+  /** Shorter form for tight spaces (header wordmark, etc.). */
+  orgShortName: "Lee Anne Newkirk Foundation",
+  /**
+   * Registered legal name. Used only where a formal/legal name is called
+   * for (footer disclosure, structured data) — everyday copy should use
+   * orgName instead.
+   */
+  legalName: "Lee Anne Newkirk Foundation, Inc.",
 
   /** Primary production domain for the foundation site. */
-  primaryDomain: "theleenewkirkfoundation.com",
+  primaryDomain: "theleeannenewkirkfoundation.com",
   /** Campaign domain that rewrites into the /fill-the-rooms section. */
   campaignDomain: "filltherooms.org",
 
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://theleenewkirkfoundation.com",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://theleeannenewkirkfoundation.com",
 
-  tagline: "Continuing Lee Anne Newkirk's spirit of caring for our community.",
+  tagline: "Carrying forward Lee's legacy of generosity.",
 
   description:
-    "The Lee Newkirk Foundation carries forward Lee Anne Newkirk's care for her community through Fill the Rooms, an annual Christmas toy drive, and future programs that help neighbors in need.",
+    "The Lee Anne Newkirk Foundation carries forward Lee Anne Newkirk's legacy of generosity by bringing toys, joy, and hope to children and families facing difficult circumstances — starting with Fill the Rooms, a Christmas toy drive for hospitalized kids.",
 
   // PLACEHOLDER — replace with a real inbox once one is set up.
-  contactEmail: "hello@theleenewkirkfoundation.com",
+  contactEmail: "hello@theleeannenewkirkfoundation.com",
   // PLACEHOLDER — replace with a real phone number, or remove the phone
   // link from the contact page if the foundation prefers email-only.
   contactPhone: null as string | null,
 
-  // PLACEHOLDER — mailing address for drop-off / correspondence, if the
-  // foundation wants one listed publicly.
+  // PLACEHOLDER — mailing address for correspondence, if the foundation
+  // wants one listed publicly.
   mailingAddress: null as string | null,
 
   social: {
@@ -45,7 +56,8 @@ export const siteConfig = {
   /**
    * Nonprofit status. Leave as "pending" until confirmed — this copy is
    * used verbatim in the footer and donate page, so it must never overstate
-   * what's actually been filed/approved.
+   * what's actually been filed/approved. Never set to "501c3" without
+   * explicit written confirmation the determination letter is in hand.
    */
   nonprofitStatus: "pending" as "pending" | "501c3",
   // PLACEHOLDER — EIN, once available, for the donate/footer disclosure.
@@ -69,4 +81,15 @@ export const primaryNav: NavItem[] = [
 export const footerNav: NavItem[] = [
   ...primaryNav.filter((item) => item.href !== "/"),
   { label: "Contact", href: "/contact" },
+];
+
+/** Legal/policy links, shown in the footer. All point at the single
+ * /legal page (see src/app/legal/page.tsx) — each policy area is real,
+ * honest "in development" copy rather than fabricated legal text. */
+export const legalNav: NavItem[] = [
+  { label: "Privacy Policy", href: "/legal#privacy" },
+  { label: "Terms of Use", href: "/legal#terms" },
+  { label: "Donation Policy", href: "/legal#donation-policy" },
+  { label: "Financial Transparency", href: "/legal#financial-transparency" },
+  { label: "Nonprofit Disclosures", href: "/legal#disclosures" },
 ];
