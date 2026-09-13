@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/*                                                                      */
+/* Foundation-wide colors carry the trust/warmth of the parent brand.  */
+/* Fill the Rooms borrows the same paper/ink/gold and adds its own     */
+/* accent (cranberry + evergreen) so the campaign feels related but    */
+/* recognizable on its own — useful later for flyers, boxes, shirts.   */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+
+  /* Neutrals */
+  --color-paper: #fbf7f0;
+  --color-paper-dim: #f2ebdd;
+  --color-ink: #211c17;
+  --color-ink-soft: #4b443c;
+  --color-line: #e3d9c6;
+
+  /* Foundation brand */
+  --color-navy: #1c3a3d;
+  --color-navy-deep: #12262a;
+  --color-gold: #b8842c;
+  --color-gold-soft: #efe0bd;
+  /* Lighter than --color-gold specifically so small text set in gold on a
+     dark (navy/berry/holly) background clears WCAG AA contrast — the
+     base gold is tuned for buttons (dark text on top of it), not the
+     other way around. */
+  --color-gold-bright: #e0ab4c;
+
+  /* Fill the Rooms campaign accent */
+  --color-berry: #8a2f3b;
+  --color-berry-deep: #6c2530;
+  --color-holly: #2f4a3e;
+  --color-holly-deep: #24382f;
+
+  /* Feedback */
+  --color-success: #2f5d3f;
+  --color-error: #a3312c;
+}
+
+@theme inline {
+  --color-paper: var(--color-paper);
+  --color-paper-dim: var(--color-paper-dim);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-line: var(--color-line);
+
+  --color-navy: var(--color-navy);
+  --color-navy-deep: var(--color-navy-deep);
+  --color-gold: var(--color-gold);
+  --color-gold-soft: var(--color-gold-soft);
+  --color-gold-bright: var(--color-gold-bright);
+
+  --color-berry: var(--color-berry);
+  --color-berry-deep: var(--color-berry-deep);
+  --color-holly: var(--color-holly);
+  --color-holly-deep: var(--color-holly-deep);
+
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Visible, high-contrast focus ring for keyboard users, on every
+   interactive element — never rely on a browser default that a reset
+   might have stripped. */
+:focus-visible {
+  outline: 3px solid var(--color-navy);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-gold-soft);
+  color: var(--color-ink);
+}
+
+/* Respect reduced-motion preferences globally. Individual components
+   still check this via the `motion-safe:`/`motion-reduce:` Tailwind
+   variants, but this is a belt-and-suspenders global default. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
